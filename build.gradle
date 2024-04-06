@@ -15,9 +15,19 @@ repositories {
     mavenCentral()
 }
 
+dependencyManagement {
+    imports {
+        mavenBom "io.projectreactor:reactor-bom:2023.0.4"
+    }
+}
+
 dependencies {
+    implementation 'io.projectreactor:reactor-core'
     implementation 'org.springframework.boot:spring-boot-starter'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testImplementation 'io.projectreactor:reactor-test'
+
 }
 
 tasks.named('test') {
