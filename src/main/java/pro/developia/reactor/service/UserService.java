@@ -3,6 +3,7 @@ package pro.developia.reactor.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pro.developia.reactor.repository.User;
+import pro.developia.reactor.repository.UserR2dbcRepository;
 import pro.developia.reactor.repository.UserRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -10,7 +11,8 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Service
 public class UserService {
-    private final UserRepository userRepository;
+//    private final UserRepository userRepository;
+    private final UserR2dbcRepository userRepository;
 
     public Mono<User> create(String name, String email) {
         return userRepository.save(
@@ -29,7 +31,7 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public Mono<Integer> deleteById(Long id) {
+    public Mono<Void> deleteById(Long id) {
         return userRepository.deleteById(id);
     }
 
