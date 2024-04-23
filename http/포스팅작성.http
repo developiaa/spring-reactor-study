@@ -1,0 +1,8 @@
+POST http://localhost:8080/v2/posts
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "title": "타이틀입니다.",
+  "content": "웹플럭스 내용"
+}
