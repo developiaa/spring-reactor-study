@@ -3,6 +3,6 @@ Content-Type: application/json
 
 {
   "userId": 1,
-  "title": "타이틀입니다.",
+  "title": "타이틀입니다.222",
   "content": "웹플럭스 내용"
 }
