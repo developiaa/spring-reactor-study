@@ -3,6 +3,7 @@ package pro.developia.reactor.repository;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 // Entity
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Table("users")
 public class User {
