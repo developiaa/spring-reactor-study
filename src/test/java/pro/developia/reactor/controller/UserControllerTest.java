@@ -11,10 +11,14 @@ import pro.developia.reactor.dto.UserCreateRequest;
 import pro.developia.reactor.dto.UserResponse;
 import pro.developia.reactor.dto.UserUpdateRequest;
 import pro.developia.reactor.repository.User;
+import pro.developia.reactor.service.PostServiceV2;
 import pro.developia.reactor.service.UserService;
+import reactor.blockhound.BlockHound;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -23,11 +27,36 @@ import static org.mockito.Mockito.when;
 @WebFluxTest(UserController.class)
 @AutoConfigureWebTestClient
 class UserControllerTest {
+    static {
+        BlockHound.install(
+                // 특정 블록킹은 예외처리 - 클래스네임이 정확히 안되서 동작 안함
+                builder -> builder.allowBlockingCallsInside("test.java.pro.developia.reactor.controller.UserControllerTest","blockHoundTest" )
+        );
+    }
+
     @Autowired
     private WebTestClient webTestClient;
 
     @MockBean
     private UserService userService;
+
+    @MockBean
+    private PostServiceV2 postService;
+
+    @Test
+    void blockHoundTest() {
+        StepVerifier.create(
+                        Mono.delay(Duration.ofSeconds(1))
+                                .doOnNext(it -> {
+                                    try {
+                                        Thread.sleep(1000); // blocking
+                                    } catch (InterruptedException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }))
+                .verifyError();
+
+    }
 
     @Test
     void createUser() {
