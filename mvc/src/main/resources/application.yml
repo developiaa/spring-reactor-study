@@ -1,0 +1,25 @@
+spring:
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+  datasource:
+    url: jdbc:mysql://localhost:3306/fast_sns
+    username: root
+    password: password
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+
+server:
+  port: 9000
+  tomcat:
+    max-connections: 10000
+    accept-count: 1000
+    threads:
+      max: 3000
+      min-spare: 1000
+
+logging:
+  level:
+    root: INFO
