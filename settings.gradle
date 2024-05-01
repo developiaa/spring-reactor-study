@@ -2,3 +2,4 @@ rootProject.name = 'reactor'
 
 include 'mvc'
 include 'website'
+include 'flow'
