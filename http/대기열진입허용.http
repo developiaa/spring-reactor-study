@@ -1,0 +1,1 @@
+POST http://localhost:9010/api/v1/queue/allow?count=2
