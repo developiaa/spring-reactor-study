@@ -5,33 +5,19 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.redis.core.ReactiveRedisTemplate;
-import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import reactor.blockhound.BlockHound;
-import reactor.core.publisher.Mono;
-
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.util.Map;
 
 @SpringBootApplication
 @RestController
 @RequiredArgsConstructor
-public class SpringReactorStudyApplication implements ApplicationRunner {
+public class BasicApplication implements ApplicationRunner {
 //    private final ReactiveRedisTemplate<String, String> reactiveRedisTemplate;
 //    private final UserRepository userRepository;
 //
-//    public static void main(String[] args) {
+    public static void main(String[] args) {
 //        BlockHound.install();
-//        SpringApplication.run(SpringReactorStudyApplication.class, args);
-//    }
+        SpringApplication.run(BasicApplication.class, args);
+    }
 //
 //    @GetMapping("/health")
 //    public Mono<Map<String, String>> health() {
