@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pro.developia.flow.dto.AllowUserResponse;
 import pro.developia.flow.dto.AllowedUserResponse;
+import pro.developia.flow.dto.RankNumberResponse;
 import pro.developia.flow.dto.RegisterUserResponse;
 import pro.developia.flow.service.UserQueueService;
 import reactor.core.publisher.Mono;
@@ -36,6 +37,14 @@ public class UserQueueController {
             @RequestParam(name = "user_id") Long userId) {
         return userQueueService.isAllowed(queue, userId)
                 .map(AllowedUserResponse::new);
+    }
+
+    @GetMapping("/rank")
+    public Mono<RankNumberResponse> getRankUser(
+            @RequestParam(name = "queue", defaultValue = "default") String queue,
+            @RequestParam(name = "user_id") Long userId) {
+        return userQueueService.getRank(queue, userId)
+                .map(RankNumberResponse::new);
     }
 
 }
